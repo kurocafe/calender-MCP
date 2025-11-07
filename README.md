@@ -1,7 +1,7 @@
 # calender-MCP
 日曜迄
 
-## 仮想環境作ったよ
+## 仮想環境作ったよ <= これいるか？Dockerfile あるのに
 ```bash
 # 作成用コマンド(実行しなくてよい)
 python3 -m venv .venv
@@ -26,8 +26,8 @@ mcp-calendar/
 │   ├── config.py           # 設定や環境変数の読み込み
 │   └── utils.py            # 共通関数など（任意）
 │
-├── credentials.json        # Google CloudからダウンロードしたOAuth認証情報
-├── token.json              # 認証済みトークン（初回認証後に自動生成）
+├── credentials.json        # Google CloudからダウンロードしたOAuth認証情報 <= gitからは削除しました（セキュリティー上）、このファイルは必要です
+├── token.json              # 認証済みトークン（初回認証後に自動生成）<=　gitからは削除しました（セキュリティ上）、これは自動生成されます（参照：google calendar api のチュートリアル）
 │
 ├── requirements.txt        # pip依存ライブラリ
 ├── Dockerfile
