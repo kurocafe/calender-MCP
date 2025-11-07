@@ -1,21 +1,6 @@
 # calender-MCP
 日曜迄
 
-## 仮想環境作ったよ <= これいるか？Dockerfile あるのに
-```bash
-# 作成用コマンド(実行しなくてよい)
-python3 -m venv .venv
-
-# 仮想環境有効化
-## mac/linux:
-source .venv/bin/activate
-
-## win
-.venv\Scripts\activate
-```
-
-環境は"requirements.txt"にあるよ。
-
 ## ディレクトリ構成(適宜変更して)
 ```bash
 mcp-calendar/
