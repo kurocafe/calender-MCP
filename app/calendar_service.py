@@ -32,3 +32,5 @@ def get_calendar_service(SCOPES: list[str]):
   service = build("calendar", "v3", credentials=creds)
   
   return service
+
+  
