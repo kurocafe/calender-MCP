@@ -67,8 +67,12 @@ def list_events() -> CallToolResult:
 # ===============================
 # Claudeに接続する前に手動で動作確認するためのブロック
 if __name__ == "__main__":
-    print("Testing tool manually...")
-    # 上で定義したツール関数を直接呼び出してテスト
-    result = list_events()
-    # 結果（テキスト形式）を出力
-    print(result.content)
+    
+    # print("Testing tool manually...")
+    # # 上で定義したツール関数を直接呼び出してテスト
+    # result = list_events()
+    # # 結果（テキスト形式）を出力
+    # print(result.content)
+
+    print("Starting Google Calendar MCP server...")
+    mcp.run()
