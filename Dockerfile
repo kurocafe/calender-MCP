@@ -4,7 +4,7 @@ WORKDIR /workspace
 
 COPY . /workspace/
 
-RUN pip install google-api-python-client google-auth-httplib2 google-aoth-oauthlib
+RUN pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
 RUN pip install -r requirements.txt
 
