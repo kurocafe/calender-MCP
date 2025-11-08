@@ -1,6 +1,6 @@
 # FastAPIベースのMCPサーバー本体
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 import datetime
 import os
@@ -13,6 +13,7 @@ from googleapiclient.discovery import build
 from calendar_service import get_calendar_service
 
 from requestType.eventRequest import CreateEventRequest
+from requestType.deleteRequest import DeleteRequest
 
 app = FastAPI()
 
@@ -72,7 +73,18 @@ def create_event(body: CreateEventRequest):
     
   except Exception as e:
     return JSONResponse({"error": f"fail to create new Event. error = {e}"})
-  
+
+@app.post("/delete-event")
+def delete_event(body: DeleteRequest):
+  """ delete an event with id """
+  try:
+      service = get_calendar_service(SCOPES)
+      service.events().delete(calendarId='primary', eventId=body.event_id).execute()
+      return {"status": "success", "deleted": body.event_id}
+  except Exception as e:
+      raise HTTPException(status_code=500, detail=str(e))
+    
+    
 
 @app.get("/")
 def root():
