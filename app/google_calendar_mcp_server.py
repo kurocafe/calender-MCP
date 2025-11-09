@@ -44,16 +44,22 @@ def check_availability(service, start_time: str, end_time: str) -> bool:
     freebusy_query = {
         "timeMin": start_time,
         "timeMax": end_time,
-        "items": [{"id": "primary"}]
+        "items": [{"id": "primary"}]  
     }
-    
+  
     try:
         resp = service.freebusy().query(body=freebusy_query).execute()
-        busy_slots = resp['calendars']['primary']['busy']
-        return len(busy_slots) == 0
+        busy_slots = resp['calendar']['primary']['busy']
+        
+        result = True
+        if busy_slots:
+            result = False
+        
+        return result
+    
     except Exception as e:
-        logger.error(f"Error checking availability: {e}")
-        return False
+        return f"fail to check free time slots. Error: {e}"
+    
 
 @mcp.tool()
 async def list_events(max_results: str = "10") -> str:
