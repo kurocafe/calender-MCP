@@ -1,14 +1,21 @@
-FROM python:3.12
+FROM python:3.11-slim
 
-WORKDIR /workspace
+WORKDIR /app
 
-# ファイルをコピー
-COPY . /workspace
+ENV PYTHONUNBUFFERED=1
 
-# 依存関係をインストール（supervisorも含む）
-RUN pip install -r requirements.txt
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Pythonパスを設定
-ENV PYTHONPATH=/workspace/app
+# Copy server code
+COPY ./app/* .
 
-CMD ["uvicorn", "app.server:app", "--host", "0.0.0.0", "--port", "8000"]
+# Create directory for credentials and tokens
+RUN mkdir -p /mcp-data && \
+    useradd -m -u 1000 mcpuser && \
+    chown -R mcpuser:mcpuser /app /mcp-data
+
+USER mcpuser
+
+CMD ["python3", "google_calendar_mcp_server.py"]

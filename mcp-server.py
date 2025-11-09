@@ -21,8 +21,8 @@ FASTAPI_URL = "http://localhost:8000"
 # Claudeが呼び出すツール定義
 # ===============================
 # Claudeに「list-events」というツールとして認識される
-@mcp.tool("list-events")
-def list_events() -> CallToolResult:
+@mcp.tool()
+async def list_events() -> CallToolResult:
     """List next 10 Google Calendar events."""
 
     try:

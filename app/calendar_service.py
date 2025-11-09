@@ -25,7 +25,6 @@ def get_calendar_service(SCOPES: list[str]):
       )
       
       creds = flow.run_local_server(port=8080)
-    print("write token.json")
     with open('token.json', "w") as token:
       token.write(creds.to_json())
   
